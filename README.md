@@ -32,10 +32,9 @@ The main goal of this project was to recreate the Disney Plus streaming platform
 3. [Members](#project-members)  
 4. [Objective](#objective)  
 5. [Technologies Used](#technologies-used)  
-6. [Installation and Execution](#installation-and-execution)  
-7. [Key Concepts](#key-concepts)  
-8. [Final Considerations](#final-considerations)  
-9. [Contact](#contact)  
+6. [Installation and Execution](#installation-and-execution)   
+7. [Final Considerations](#final-considerations)  
+8. [Contact](#contact)  
 
 ---
 
