@@ -61,7 +61,7 @@ This project is a simplified clone of the Disney Plus interface, featuring navig
 git clone https://github.com/natasha-minako/reactprimeproject.git
 ````
 
-2. Requirements
+### 2. Requirements
 ```
 Code editor (such as Visual Studio Code)
 ```
