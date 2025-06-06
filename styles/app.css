@@ -58,3 +58,28 @@ main {
   }
 }
 
+@keyframes buttonClick {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+#logoutBtn.animate-click {
+  animation: buttonClick 0.4s ease;
+  transition: opacity 1s ease;
+}
+
+#logoutBtn.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease;
+  pointer-events: none;
+}

@@ -1,0 +1,93 @@
+body {
+  background: linear-gradient(135deg, #090b13 0%, #040714 100%);
+  font-family: 'Montserrat', sans-serif;
+  color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.login-wrapper {
+  max-width: 400px;
+  padding: 40px 30px;
+  background: rgba(20, 20, 20, 0.85);
+  border-radius: 12px;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+  text-align: center;
+}
+
+.logo {
+  width: 120px;
+  margin-bottom: 32px;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+p {
+  font-size: 1rem;
+  margin-bottom: 28px;
+  color: #cccccc;
+}
+
+.form-email input[type="email"] {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 6px;
+  border: none;
+  font-size: 1rem;
+  background: #222;
+  color: #f9f9f9;
+  outline-offset: 2px;
+  transition: outline 0.3s ease;
+}
+
+.form-email input[type="email"]:focus {
+  outline: 2px solid #0063e5;
+}
+
+.form-email button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 14px 16px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  background-color: #0063e5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-email button:hover {
+  background-color: #0483ee;
+}
+
+.error-message {
+  color: #ff4d4d;
+  margin-top: 14px;
+  min-height: 18px;
+  font-weight: 600;
+}
+
+.terms {
+  margin-top: 40px;
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.terms a {
+  color: #ccc;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.terms a:hover {
+  color: #fff;
+}
