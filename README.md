@@ -1,5 +1,5 @@
 <h1 align="center">
-  Disney Plus Interface Clone
+  Disney Plus Streaming Interface
 </h1>
 
 ## Institution and Course  
