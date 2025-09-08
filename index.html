@@ -264,6 +264,274 @@
         user-select: none;
       }
 
+      /* Sidebar Navigation Styles */
+      .navigation {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 375px;
+        background-color: #0c0e1a;
+        border-left: 1px solid #1e213a;
+        padding: 24px;
+        transform: translateX(100%);
+        visibility: hidden;
+        transition: transform 0.5s ease-in-out;
+        z-index: 1000;
+        color: #fff;
+      }
+
+      .navigation.active {
+        transform: translateX(0);
+        visibility: visible;
+      }
+
+      .navigation h2 {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 24px;
+      }
+
+      .navigation .form {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 24px;
+      }
+
+      .navigation .form input {
+        flex-grow: 1;
+        background-color: #1e213a;
+        border: 1px solid #252945;
+        color: #fff;
+      }
+
+      /* This was missing from the global.css, so I'm adding it here */
+      .movie {
+        min-width: 200px; /* Defines a minimum width for the movie card */
+        width: 200px;     /* Defines a fixed width */
+        height: 112px;    /* Maintains a 16:9 aspect ratio (200 / 1.77) */
+        position: relative;
+        overflow: hidden;
+        border-radius: 4px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .movie:hover {
+        transform: scale(1.05);
+      }
+
+      /* Category Styles */
+      .category-section {
+        padding: 20px 40px;
+      }
+
+      .category-title {
+        color: #fff;
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 15px;
+      }
+
+      .movies-row {
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+        gap: 15px;
+        padding-bottom: 15px; /* For scrollbar spacing */
+      }
+
+      /* Custom Scrollbar */
+      .movies-row::-webkit-scrollbar {
+        height: 8px;
+      }
+
+      .movies-row::-webkit-scrollbar-track {
+        background: #1a1d29;
+        border-radius: 4px;
+      }
+
+      .movies-row::-webkit-scrollbar-thumb {
+        background: #4f5361;
+        border-radius: 4px;
+      }
+
+      /* Sidebar Carousel */
+      .sidebar-carousel {
+        position: relative;
+        margin-top: 24px;
+      }
+
+      .sidebar-movies-list {
+        display: flex;
+        overflow-x: hidden; /* Hide scrollbar, will be controlled by buttons */
+        scroll-behavior: smooth;
+        gap: 16px;
+        padding: 0 4px; /* Small padding to not cut off box-shadow on hover */
+      }
+
+      .sidebar-carousel .movie {
+        flex-shrink: 0; /* Prevent items from shrinking */
+      }
+
+      .carousel-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        font-size: 24px;
+        cursor: pointer;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s;
+      }
+
+      .carousel-arrow:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+
+      .arrow-left { left: -20px; }
+      .arrow-right { right: -20px; }
+
+      /* New Brand Blocks Styles */
+      .brands {
+        padding: 30px 40px;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 25px;
+      }
+
+      .brand-box {
+        position: relative;
+        border: 3px solid rgba(249, 249, 249, 0.1);
+        border-radius: 10px;
+        box-shadow: 0 26px 30px -10px rgba(0, 0, 0, 0.69), 0 16px 10px -10px rgba(0, 0, 0, 0.73);
+        cursor: pointer;
+        transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+        overflow: hidden;
+      }
+
+      .brand-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 1;
+      }
+
+      .brand-box video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        z-index: 0;
+        transition: opacity 0.3s ease-in-out;
+      }
+
+      .brand-box:hover {
+        transform: scale(1.05);
+        border-color: rgba(249, 249, 249, 0.8);
+        box-shadow: 0 40px 58px -16px rgba(0, 0, 0, 0.8), 0 30px 22px -10px rgba(0, 0, 0, 0.72);
+      }
+
+      .brand-box:hover video {
+        opacity: 1;
+      }
+
+      /* Adjust main content layout */
+      main { padding-top: 0; }
+
+      /* New Header Styles */
+      .main-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 70px;
+        background-color: transparent;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 36px;
+        letter-spacing: 16px;
+        z-index: 100;
+        transition: background-color 0.5s ease-out;
+      }
+
+      .main-header.scrolled {
+        background-color: #090b13;
+      }
+
+      .header-logo {
+        width: 80px;
+        margin-top: 4px;
+      }
+
+      .nav-menu {
+        display: flex;
+        align-items: center;
+        flex-flow: row nowrap;
+        height: 100%;
+        justify-content: flex-end;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        margin-right: auto;
+        margin-left: 25px;
+      }
+
+      .nav-menu a {
+        display: flex;
+        align-items: center;
+        padding: 0 12px;
+        text-decoration: none;
+      }
+
+      .nav-menu a span {
+        color: rgb(249, 249, 249);
+        font-size: 13px;
+        letter-spacing: 1.42px;
+        line-height: 1.08;
+        padding: 2px 0px;
+        white-space: nowrap;
+        position: relative;
+      }
+
+      .nav-menu a span:before {
+        background-color: rgb(249, 249, 249);
+        border-radius: 0px 0px 4px 4px;
+        bottom: -6px;
+        content: "";
+        height: 2px;
+        left: 0px;
+        opacity: 0;
+        position: absolute;
+        right: 0px;
+        transform-origin: left center;
+        transform: scaleX(0);
+        transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+        visibility: hidden;
+        width: auto;
+      }
+
+      .nav-menu a:hover span:before {
+        transform: scaleX(1);
+        visibility: visible;
+        opacity: 1 !important;
+      }
+
+      /* Adjust main content to be below header */
+      .app__image {
+        padding-top: 70px;
+      }
+
     </style>
   </head>
   <body>
@@ -318,7 +586,7 @@
       <div class="app__image">
         <img
           loading="lazy"
-          alt="Featured movie image"
+          alt="Imagem do filme destaque"
           src="https://image.tmdb.org/t/p/original/620hnMVLu6RSZW6a5rwO8gqpt0t.jpg"
         />
       </div>
@@ -369,6 +637,7 @@
 
     <script src="./scripts/index.js"></script>
     <script>
+      // DOM Elements
       const authBtn = document.getElementById('authBtn');
       const firstNameInput = document.getElementById('firstNameInput');
       const lastNameInput = document.getElementById('lastNameInput');
@@ -388,23 +657,27 @@
         return /\S+@\S+\.\S+/.test(email);
       }
 
+      // Toggle password visibility
       togglePassword.addEventListener('click', () => {
         const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
         passwordInput.setAttribute('type', type);
         togglePassword.textContent = type === 'password' ? 'Show' : 'Hide';
       });
 
+      // Toggle confirm password visibility
       toggleConfirmPassword.addEventListener('click', () => {
         const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
         confirmPasswordInput.setAttribute('type', type);
         toggleConfirmPassword.textContent = type === 'password' ? 'Show' : 'Hide';
       });
 
+      // Simulated user database
       let registeredUsers = [
         { firstName: 'Test', lastName: 'User', email: 'user@example.com', password: 'password123' },
         { email: 'test@disney.com', password: 'disneyplus' },
       ];
 
+      // Login validation
       function handleLogin() {
         const email = emailInput.value.trim();
         const password = passwordInput.value.trim();
@@ -427,7 +700,10 @@
           loginError.textContent = 'This email is not registered. Please sign up.';
           loginError.style.display = 'block';
         } else {
+          // Validate email and password
           if (user.password === password) {
+            // Successful login
+            loginScreen.classList.remove('fade-in');
             loginScreen.classList.add('fade-out');
 
             setTimeout(() => {
@@ -439,12 +715,14 @@
               app.classList.add('fade-in');
             }, 1000);
           } else {
+            // Incorrect password
             loginError.textContent = 'Incorrect password. Please try again.';
             loginError.style.display = 'block';
           }
         }
       }
 
+      // Sign-up validation
       function handleSignUp() {
         const firstName = firstNameInput.value.trim();
         const lastName = lastNameInput.value.trim();
@@ -452,6 +730,7 @@
         const password = passwordInput.value.trim();
         const confirmPassword = confirmPasswordInput.value.trim();
 
+        // Client-side validation
         if (!firstName) {
           loginError.textContent = 'Please enter your first name.';
         } else if (!lastName) {
@@ -465,20 +744,23 @@
         } else if (registeredUsers.some(u => u.email === email)) {
           loginError.textContent = 'An account with this email already exists.';
         } else {
+          // Integration with simulated backend
           registeredUsers.push({ firstName, lastName, email, password });
           console.log('Updated user database:', registeredUsers);
 
+          // Display success message and switch to login
           alert('Account created successfully! You can now sign in.');
-          toggleFormMode();
+          toggleFormMode(); // Switch back to login mode
           loginError.style.display = 'none';
-          emailInput.value = email;
+          emailInput.value = email; // Pre-fill email for convenience
           passwordInput.value = '';
-          return;
+          return; // Exit to prevent showing an error
         }
 
         loginError.style.display = 'block';
       }
 
+      // Main authentication button handler
       authBtn.addEventListener('click', () => {
         if (isLoginMode) {
           handleLogin();
@@ -487,11 +769,13 @@
         }
       });
 
+      // "Forgot password" link
       forgotPasswordLink.addEventListener('click', (e) => {
         e.preventDefault();
         alert('To recover your password, please access your email provider:\n\n- Gmail\n- Outlook/Hotmail\n- Yahoo\n- Others');
       });
 
+      // Function to toggle between Login and Sign-up modes
       function toggleFormMode() {
         isLoginMode = !isLoginMode;
         const signupFields = document.querySelectorAll('.signup-field');
@@ -506,6 +790,7 @@
           field.style.display = isLoginMode ? 'none' : 'block';
         });
 
+        // Re-attach listener to the new link
         document.getElementById('toggleFormLink').addEventListener('click', (e) => {
           e.preventDefault();
           passwordInput.setAttribute('type', 'password');
@@ -513,6 +798,7 @@
           toggleFormMode();
         });
 
+        // Clear form and errors
         loginError.style.display = 'none';
         document.getElementById('authForm').reset();
       }
@@ -524,6 +810,7 @@
         toggleFormMode();
       });
 
+      // Logout with confirmation
       logoutBtn.addEventListener('click', () => {
         if (confirm('Are you sure you want to sign out?')) {
           app.classList.remove('fade-in');
@@ -537,6 +824,7 @@
             void loginScreen.offsetWidth;
             loginScreen.classList.add('fade-in');
 
+            // Clear form fields
             emailInput.value = '';
             passwordInput.value = '';
             firstNameInput.value = '';
