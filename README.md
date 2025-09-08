@@ -62,7 +62,7 @@ Disney Plus UI is a professional project that replicates the Disney+ using seman
 
 ### 1. Clone the repository  
 ```bash
-git clone https://github.com/natasha-minako/reactprimeproject.git
+git clone https://github.com/NatashaBaudelaire/disneyplusui.git
 ```
 
 ### 2. Requirements  
