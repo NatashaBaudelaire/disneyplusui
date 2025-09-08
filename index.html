@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="EN-GB">
+<html lang="en-GB">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,6 +17,7 @@
     />
 
     <link rel="stylesheet" href="./styles/global.css" />
+    <link rel="stylesheet" href="./styles/main.css" />
     <style>
       .login-screen {
         position: fixed;
@@ -49,17 +50,6 @@
 
       .login-screen.fade-out {
         opacity: 0;
-      }
-
-      .login-box {
-        background-color: #ffffff;
-        padding: 40px;
-        border-radius: 10px;
-        width: 580px;
-        min-height: 597px;
-        text-align: center;
-        box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
-        box-sizing: border-box;
       }
 
       #app {
@@ -290,19 +280,6 @@
         font-size: 24px;
         font-weight: 700;
         margin-bottom: 24px;
-      }
-
-      .navigation .form {
-        display: flex;
-        gap: 8px;
-        margin-bottom: 24px;
-      }
-
-      .navigation .form input {
-        flex-grow: 1;
-        background-color: #1e213a;
-        border: 1px solid #252945;
-        color: #fff;
       }
 
       /* This was missing from the global.css, so I'm adding it here */
@@ -539,7 +516,7 @@
 
     <div class="login-screen" id="loginScreen">
       <div class="login-box">
-        <img src="/assets/logo1.png" alt="Disney+ Logo" class="logo" />
+        <img src="/assets/logo-blue.png" alt="Disney+ Logo" class="logo" />
         <h1 id="formTitle">Sign in with your email</h1>
         <p id="formSubtitle">Log in to Disney+ with your MyDisney account.</p>
 
@@ -585,14 +562,14 @@
 <div id="app" style="display: none;">
       <div class="app__image">
         <img
-          loading="lazy"
-          alt="Imagem do filme destaque"
+          loading="lazy" 
+          alt="Featured movie image"
           src="https://image.tmdb.org/t/p/original/620hnMVLu6RSZW6a5rwO8gqpt0t.jpg"
         />
       </div>
 
       <header>
-        <img src="/assets/logo.png" alt="Disney Plus Logo" />
+        <img src="/assets/logo-white.png" alt="Disney Plus Logo" />
 
         <div class="header__actions">
           <button type="button" class="button__menu" onclick="changeButtonMenu()">
@@ -604,12 +581,12 @@
         </div>
 
         <nav class="navigation">
-          <h2>Movies</h2>
+          <h2>My Movies</h2>
 
           <form class="form" id="add__movie">
             <input type="text" placeholder="Add your movie" name="movie" />
 
-            <button type="submit">+</button>
+            <button type="submit" aria-label="Adicionar filme">+</button>
           </form>
 
           <ul id="movies"></ul>
@@ -629,7 +606,7 @@
 
           <button type="button">
             <img src="/assets/icon-play.png" alt="Icon play" />
-            Watch now
+            Watch Now
           </button>
         </section>
       </main>
