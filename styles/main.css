@@ -187,6 +187,7 @@ main {
   width: 100%;
   height: 100vh;
   z-index: -1;
+  background: none; /* Remove qualquer fundo branco */
 }
 
 .app__image::after {
@@ -194,6 +195,7 @@ main {
   position: absolute;
   inset: 0;  
   background: linear-gradient(90.18deg, rgba(13, 22, 46, 0.7) 23.21%, rgba(13, 22, 46, 0.0001) 96.69%);
+  pointer-events: none;
 }
 
 .app__image img {
@@ -204,7 +206,7 @@ main {
 
 /* Brands Section */
 .brands {
-  padding: 30px 40px;
+  padding: 40px 40px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 25px;
