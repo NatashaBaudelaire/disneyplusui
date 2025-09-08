@@ -1,16 +1,18 @@
+
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB-DRQI5boYHBTu-XiOdXO92FljPu1Vp8E",
-  authDomain: "disneyplus-clone-5bf51.firebaseapp.com",
-  projectId: "disneyplus-clone-5bf51",
-  storageBucket: "disneyplus-clone-5bf51.appspot.com",
-  messagingSenderId: "989994874938",
-  appId: "1:989994874938:web:SEU_APP_ID" // substitua pelo que estiver aí na sua tela
+  apiKey: "AIzaSyCtDn5MaWgdpIB9-QxdWTS5Cn_DRNw8-TY",
+  authDomain: "disneyplusstreaminginterface.firebaseapp.com",
+  projectId: "disneyplusstreaminginterface",
+  storageBucket: "disneyplusstreaminginterface.firebasestorage.app",
+  messagingSenderId: "835935667855",
+  appId: "1:835935667855:web:c56ad0fa7a5ec0cc5152fa",
+  measurementId: "G-HW7RS38VTF"
 };
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+const analytics = getAnalytics(app);
 
 export { auth };

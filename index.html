@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="EN-GB">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Disney Plus</title>
-    <meta name="description" content="Plataforma do disney plus" />
+    <meta name="description" content="Disney Plus Platform" />
 
     <link rel="shortcut icon" type="image/jpg" href="./assets/favicon.ico" />
 
@@ -56,7 +56,7 @@
         padding: 40px;
         border-radius: 10px;
         width: 580px;
-        height: 597px;
+        min-height: 597px;
         text-align: center;
         box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
         box-sizing: border-box;
@@ -76,10 +76,29 @@
         padding: 40px;
         border-radius: 10px;
         width: 580px;
-        height: 597px;
+        min-height: 597px;
         text-align: center;
         box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
         box-sizing: border-box;
+      }
+
+      .forgot-password {
+        display: block;
+        text-align: right;
+        margin-top: -10px;
+        margin-bottom: 20px;
+        font-size: 13px;
+      }
+
+      .form-row {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      /* Hide sign-up fields by default */
+      .signup-field {
+        display: none;
       }
 
       .login-box h1 {
@@ -93,7 +112,9 @@
         margin-bottom: 25px;
       }
 
-      .login-box input[type='email'] {
+      .login-box input[type='email'],
+      .login-box input[type='password'],
+      .login-box input[type='text'] {
         width: 100%;
         padding: 14px;
         font-size: 16px;
@@ -106,7 +127,45 @@
         color: #000000;
       }
 
-      .login-box button {
+      .form-row input {
+        margin-bottom: 0;
+      }
+
+
+      .password-container {
+        position: relative;
+        margin-bottom: 20px;
+      }
+
+      .password-container input[type='password'],
+      .password-container input[type='text'] {
+        margin-bottom: 0;
+        padding-right: 50px;
+      }
+
+      .toggle-password {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        color: #555;
+        padding: 0;
+        width: auto;
+        height: auto;
+        border-radius: 0;
+      }
+
+      .toggle-password:hover {
+        background: none;
+        transform: translateY(-50%) scale(1.1);
+      }
+
+      .login-box #authBtn {
         width: 100%;
         padding: 14px;
         background-color: #000000;
@@ -119,7 +178,7 @@
         transition: background-color 0.3s ease, transform 0.2s ease;
       }
 
-      .login-box button:hover {
+      .login-box #authBtn:hover {
         background-color: #242424;
         transform: scale(1.02);
       }
@@ -204,6 +263,7 @@
         transition: background-color 0.3s ease, transform 0.1s ease, background 0.3s ease;
         user-select: none;
       }
+
     </style>
   </head>
   <body>
@@ -211,35 +271,60 @@
 
     <div class="login-screen" id="loginScreen">
       <div class="login-box">
-        <img src="/assets/logo1.png" alt="Logo Disney+" class="logo" />
-        <h1>Entrar com o seu e-mail</h1>
-        <p>Faça login na Disney+ com sua conta MyDisney.</p>
+        <img src="/assets/logo1.png" alt="Disney+ Logo" class="logo" />
+        <h1 id="formTitle">Sign in with your email</h1>
+        <p id="formSubtitle">Log in to Disney+ with your MyDisney account.</p>
 
-        <input type="email" id="emailInput" placeholder="E-mail" />
-        <button id="loginBtn">Continuar</button>
-        <p class="error-message" id="loginError">Por favor, insira um e-mail válido.</p>
+        <form id="authForm" onsubmit="return false;">
+          <div class="signup-field form-row">
+            <input type="text" id="firstNameInput" placeholder="First Name" />
+            <input type="text" id="lastNameInput" placeholder="Last Name" />
+          </div>
+          <input type="email" id="emailInput" placeholder="Email" required />
+          <div class="password-container">
+            <input type="password" id="passwordInput" placeholder="Password" required />
+            <button type="button" id="togglePassword" class="toggle-password">
+              Show
+            </button>
+          </div>
+          <div class="password-container signup-field">
+            <input type="password" id="confirmPasswordInput" placeholder="Confirm Password" />
+            <button type="button" id="toggleConfirmPassword" class="toggle-password">
+              Show
+            </button>
+          </div>
+          <a href="#" id="forgotPasswordLink" class="forgot-password login-info-text">
+            Forgot your password?
+          </a>
+          <button id="authBtn">Continue</button>
+        </form>
+
+        <p class="error-message" id="loginError">Please enter a valid email.</p>
         <p class="login-info-text">
-          O Disney+ faz parte da família de empresas The Walt Disney.<br />
-          O MyDisney permite que você faça login de forma integrada em serviços e
-          experiências em toda a família de empresas The Walt Disney, como Disney+, ESPN,
+          Disney+ is part of The Walt Disney family of companies.<br />
+          MyDisney allows you to log in seamlessly across services and
+          experiences across The Walt Disney family of companies, such as Disney+, ESPN,
           Walt Disney World,
-          <a href="https://my.disney.com" target="_blank" rel="noopener noreferrer">e mais</a>.
+          <a href="https://my.disney.com" target="_blank" rel="noopener noreferrer">and more</a>.
+        </p>
+        <p class="login-info-text" id="toggleFormText">
+          Don't have an account? <a href="#" id="toggleFormLink">Sign up</a>.
         </p>
         <img src="/assets/icons.png" alt="Icons" />
       </div>
     </div>
 
-    <div id="app" style="display: none;">
+<div id="app" style="display: none;">
       <div class="app__image">
         <img
           loading="lazy"
-          alt="Imagem do filme destaque"
+          alt="Featured movie image"
           src="https://image.tmdb.org/t/p/original/620hnMVLu6RSZW6a5rwO8gqpt0t.jpg"
         />
       </div>
 
       <header>
-        <img src="/assets/logo.png" alt="Logo da disney plus" />
+        <img src="/assets/logo.png" alt="Disney Plus Logo" />
 
         <div class="header__actions">
           <button type="button" class="button__menu" onclick="changeButtonMenu()">
@@ -247,14 +332,14 @@
             <span></span>
             <span></span>
           </button>
-          <button id="logoutBtn">Sair</button>
+          <button id="logoutBtn">Sign out</button>
         </div>
 
         <nav class="navigation">
           <h2>Movies</h2>
 
           <form class="form" id="add__movie">
-            <input type="text" placeholder="Adicione o seu filme" name="movie" />
+            <input type="text" placeholder="Add your movie" name="movie" />
 
             <button type="submit">+</button>
           </form>
@@ -266,7 +351,7 @@
       <main>
         <section class="feature__movie">
           <div class="rating">
-            <img src="/assets/logo-imdb.png" alt="Logo da IMDB" />
+            <img src="/assets/logo-imdb.png" alt="IMDB Logo" />
             <strong></strong>
           </div>
 
@@ -276,7 +361,7 @@
 
           <button type="button">
             <img src="/assets/icon-play.png" alt="Icon play" />
-            Assistir agora
+            Watch now
           </button>
         </section>
       </main>
@@ -284,73 +369,187 @@
 
     <script src="./scripts/index.js"></script>
     <script>
-      const loginBtn = document.getElementById('loginBtn');
+      const authBtn = document.getElementById('authBtn');
+      const firstNameInput = document.getElementById('firstNameInput');
+      const lastNameInput = document.getElementById('lastNameInput');
       const emailInput = document.getElementById('emailInput');
+      const passwordInput = document.getElementById('passwordInput');
+      const confirmPasswordInput = document.getElementById('confirmPasswordInput');
+      const togglePassword = document.getElementById('togglePassword');
+      const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
       const loginError = document.getElementById('loginError');
       const loginScreen = document.getElementById('loginScreen');
       const app = document.getElementById('app');
+      const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+      const toggleFormLink = document.getElementById('toggleFormLink');
+      let isLoginMode = true;
 
       function isValidEmail(email) {
         return /\S+@\S+\.\S+/.test(email);
       }
 
-      loginBtn.addEventListener('click', () => {
+      togglePassword.addEventListener('click', () => {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        togglePassword.textContent = type === 'password' ? 'Show' : 'Hide';
+      });
+
+      toggleConfirmPassword.addEventListener('click', () => {
+        const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        confirmPasswordInput.setAttribute('type', type);
+        toggleConfirmPassword.textContent = type === 'password' ? 'Show' : 'Hide';
+      });
+
+      let registeredUsers = [
+        { firstName: 'Test', lastName: 'User', email: 'user@example.com', password: 'password123' },
+        { email: 'test@disney.com', password: 'disneyplus' },
+      ];
+
+      function handleLogin() {
         const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
+
         if (!isValidEmail(email)) {
+          loginError.textContent = 'Please enter a valid email.';
+          loginError.style.display = 'block';
+          return;
+        } else if (password === '') {
+          loginError.textContent = 'Please enter your password.';
+          loginError.style.display = 'block';
+          return;
+        }
+
+        loginError.style.display = 'none';
+
+        const user = registeredUsers.find(u => u.email === email);
+
+        if (!user) {
+          loginError.textContent = 'This email is not registered. Please sign up.';
           loginError.style.display = 'block';
         } else {
+          if (user.password === password) {
+            loginScreen.classList.add('fade-out');
+
+            setTimeout(() => {
+              loginScreen.style.display = 'none';
+
+              app.style.display = 'block';
+              app.classList.remove('fade-out');
+              void app.offsetWidth;
+              app.classList.add('fade-in');
+            }, 1000);
+          } else {
+            loginError.textContent = 'Incorrect password. Please try again.';
+            loginError.style.display = 'block';
+          }
+        }
+      }
+
+      function handleSignUp() {
+        const firstName = firstNameInput.value.trim();
+        const lastName = lastNameInput.value.trim();
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
+        const confirmPassword = confirmPasswordInput.value.trim();
+
+        if (!firstName) {
+          loginError.textContent = 'Please enter your first name.';
+        } else if (!lastName) {
+          loginError.textContent = 'Please enter your last name.';
+        } else if (!isValidEmail(email)) {
+          loginError.textContent = 'Please enter a valid email.';
+        } else if (password.length < 6) {
+          loginError.textContent = 'Password must be at least 6 characters long.';
+        } else if (password !== confirmPassword) {
+          loginError.textContent = 'Passwords do not match.';
+        } else if (registeredUsers.some(u => u.email === email)) {
+          loginError.textContent = 'An account with this email already exists.';
+        } else {
+          registeredUsers.push({ firstName, lastName, email, password });
+          console.log('Updated user database:', registeredUsers);
+
+          alert('Account created successfully! You can now sign in.');
+          toggleFormMode();
           loginError.style.display = 'none';
+          emailInput.value = email;
+          passwordInput.value = '';
+          return;
+        }
 
-          loginScreen.classList.remove('fade-in');
-          loginScreen.classList.add('fade-out');
+        loginError.style.display = 'block';
+      }
 
-          setTimeout(() => {
-            loginScreen.style.display = 'none';
-
-            app.style.display = 'block';
-            app.classList.remove('fade-out');
-            void app.offsetWidth;
-            app.classList.add('fade-in');
-          }, 1000);
+      authBtn.addEventListener('click', () => {
+        if (isLoginMode) {
+          handleLogin();
+        } else {
+          handleSignUp();
         }
       });
 
-      loginBtn.addEventListener('click', () => {
-        const email = emailInput.value.trim();
-        if (!isValidEmail(email)) {
-          loginError.style.display = 'block';
-        } else {
-          loginError.style.display = 'none';
+      forgotPasswordLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('To recover your password, please access your email provider:\n\n- Gmail\n- Outlook/Hotmail\n- Yahoo\n- Others');
+      });
 
-          loginScreen.classList.remove('fade-in');
-          loginScreen.classList.add('fade-out');
+      function toggleFormMode() {
+        isLoginMode = !isLoginMode;
+        const signupFields = document.querySelectorAll('.signup-field');
 
-          setTimeout(() => {
-            loginScreen.style.display = 'none';
+        document.getElementById('formTitle').textContent = isLoginMode ? 'Sign in with your email' : 'Create your account';
+        document.getElementById('formSubtitle').textContent = isLoginMode ? 'Log in to Disney+ with your MyDisney account.' : 'Use your email to create a new account.';
+        authBtn.textContent = isLoginMode ? 'Continue' : 'Sign Up';
+        document.getElementById('toggleFormText').innerHTML = isLoginMode ? `Don't have an account? <a href="#" id="toggleFormLink">Sign up</a>.` : `Already have an account? <a href="#" id="toggleFormLink">Sign in</a>.`;
+        forgotPasswordLink.style.display = isLoginMode ? 'block' : 'none';
 
-            app.style.display = 'block';
-            app.classList.remove('fade-out');
-            void app.offsetWidth;
-            app.classList.add('fade-in');
-          }, 1000);
-        }
+        signupFields.forEach(field => {
+          field.style.display = isLoginMode ? 'none' : 'block';
+        });
+
+        document.getElementById('toggleFormLink').addEventListener('click', (e) => {
+          e.preventDefault();
+          passwordInput.setAttribute('type', 'password');
+          togglePassword.textContent = 'Show';
+          toggleFormMode();
+        });
+
+        loginError.style.display = 'none';
+        document.getElementById('authForm').reset();
+      }
+
+      toggleFormLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        passwordInput.setAttribute('type', 'password');
+        togglePassword.textContent = 'Show';
+        toggleFormMode();
       });
 
       logoutBtn.addEventListener('click', () => {
-        app.classList.remove('fade-in');
-        app.classList.add('fade-out');
+        if (confirm('Are you sure you want to sign out?')) {
+          app.classList.remove('fade-in');
+          app.classList.add('fade-out');
 
-        setTimeout(() => {
-          app.style.display = 'none';
+          setTimeout(() => {
+            app.style.display = 'none';
 
-          loginScreen.style.display = 'flex';
-          loginScreen.classList.remove('fade-out');
-          void loginScreen.offsetWidth;
-          loginScreen.classList.add('fade-in');
+            loginScreen.style.display = 'flex';
+            loginScreen.classList.remove('fade-out');
+            void loginScreen.offsetWidth;
+            loginScreen.classList.add('fade-in');
 
-          emailInput.value = '';
-        }, 1000);
+            emailInput.value = '';
+            passwordInput.value = '';
+            firstNameInput.value = '';
+            lastNameInput.value = '';
+            confirmPasswordInput.value = '';
+            passwordInput.setAttribute('type', 'password');
+            togglePassword.textContent = 'Show';
+            confirmPasswordInput.setAttribute('type', 'password');
+            toggleConfirmPassword.textContent = 'Show';
+          }, 1000);
+        }
       });
+      
     </script>
   </body>
 </html>

@@ -1,5 +1,5 @@
 const API_KEY = '03c4e3dc470296959d6bf68804146538'
-const API_LANGUAGE = 'pt-br'
+const API_LANGUAGE = 'en-GB'
 const BASE_URL_IMAGE = {
   original: 'https://image.tmdb.org/t/p/original',
   small: 'https://image.tmdb.org/t/p/w500'
@@ -18,16 +18,35 @@ function getUrlMovieVideos(movieId) {
 }
 
 async function getTrailerYoutube(movieId) {
+  // Special case for the Spongebob movie to ensure the correct trailer
+  if (movieId === 'tt4823776') {
+    return 'https://www.youtube.com/embed/a2cowVH03Xo';
+  }
+  // Special case for the Luca movie
+  if (movieId === 'tt12801262') {
+    return 'https://www.youtube.com/embed/mYfJxlgR2jw';
+  }
+
   try {
     let response = await fetch(getUrlMovieVideos(movieId))
     let data = await response.json()
-    const trailer = data.results.find(video => video.site === 'YouTube' && video.type === 'Trailer' && /official trailer/i.test(video.name)) || data.results.find(video => video.site === 'YouTube' && video.type === 'Trailer');
+    
+    const youtubeTrailers = data.results
+      .filter(video => video.site === 'YouTube' && video.type === 'Trailer')
+      .sort((a, b) => b.size - a.size);
+
+    if (youtubeTrailers.length === 0) {
+      return null;
+    }
+
+    const trailer = youtubeTrailers.find(video => /official trailer/i.test(video.name)) || youtubeTrailers[0];
+
     if (trailer) {
       return `https://www.youtube.com/embed/${trailer.key}`
     }
     return null
   } catch (error) {
-    console.error('Erro ao buscar trailer:', error)
+    console.error('Error fetching trailer:', error)
     return null
   }
 }
@@ -72,7 +91,7 @@ function changeMainMovie(movieId) {
     changeButtonMenu()
   } else  {
     console.log(movies)
-    console.log('não foi possível achar o filme com o id', movieId)
+    console.log('Could not find the movie with id', movieId)
   }
 }
 
@@ -88,7 +107,7 @@ function createImageMovie(movieImage, movieTitle) {
   divImageMovie.classList.add('movie__image')
   const image = document.createElement('img')
   image.setAttribute('src', movieImage)
-  image.setAttribute('alt', `Imagem do filme ${movieTitle}`)
+  image.setAttribute('alt', `Image of the movie ${movieTitle}`)
   image.setAttribute('loading', 'lazy')
   divImageMovie.appendChild(image)
   return divImageMovie
@@ -98,6 +117,7 @@ function addMovieInList(movie) {
   const movieElement = document.createElement('li')
   movieElement.classList.add('movie')
   movieElement.setAttribute('id', movie.id)
+  movieElement.setAttribute('onclick', `changeMainMovie('${movie.id}')`)
   const genre = `<span>${movie.genre}</span>`
   const title = `<strong>${movie.title}</strong>`
   movieElement.innerHTML = genre + title
@@ -127,7 +147,7 @@ async function getMovieData(movieId) {
       movies.push(movieData)
       return movieData
     } catch(error) {
-      console.log('mensagem de erro:', error.message)
+      console.log('Error message:', error.message)
     }
   }
   return null
@@ -256,7 +276,7 @@ if (watchBtn) {
     if(trailerUrl) {
       createVideoModal(trailerUrl);
     } else {
-      alert('Trailer não disponível para este filme.');
+      alert('Trailer not available for this movie.');
     }
   });
 }
