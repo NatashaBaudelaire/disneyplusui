@@ -76,7 +76,7 @@
 
 .movie.active-movie .movie__image {
   filter: grayscale(1);
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 .movie.active-movie button {

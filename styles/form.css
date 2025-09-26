@@ -52,6 +52,6 @@
   }
 
   .form button::before {
-    content: 'Add your movie'
+    content: 'Adicionar'
   }
 }
