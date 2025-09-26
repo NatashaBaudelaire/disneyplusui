@@ -10,7 +10,7 @@ The main goal of this project was to recreate the Disney+ interface using modern
 
 ***
 
-## Index
+## Contents
 
 1. [Project Overview](#project-overview)  
 2. [Objective](#objective)  
