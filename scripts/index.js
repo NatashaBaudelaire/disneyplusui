@@ -32,7 +32,7 @@ function setMainMovie(movie) {
   const description = document.querySelector('.feature__movie p')
   const info = document.querySelector('.feature__movie span')
   const rating = document.querySelector('.rating strong')
-  const watchNowBtn = document.getElementById('watchNowBtn');
+  const watchNowBtn = document.getElementById('watchNowBtn')
 
   
   watchNowBtn.setAttribute('data-trailer-key', movie.trailer_key);
@@ -40,7 +40,7 @@ function setMainMovie(movie) {
   title.innerHTML = movie.title
   description.innerHTML = movie.overview
   rating.innerHTML = movie.vote_average
-  info.innerHTML = movie.release + ' - ' + movie.genre + ' - Movie'
+  info.innerHTML = movie.release + ' - ' + movie.genre + ' - Film'
 
   appImage.setAttribute('src', movie.image.original)
 }
@@ -64,8 +64,8 @@ function changeMainMovie(movieId) {
     setMainMovie(movie)
     changeButtonMenu()
   } else  {
-    console.log(movies)
-    console.log('não foi possível achar o filme com o id', movieId)
+    console.error(movies)
+    console.error(`Could not find the film with id ${movieId}`)
   }
 }
 
@@ -84,7 +84,7 @@ function createImageMovie(movieImage, movieTitle) {
   const image = document.createElement('img')
 
   image.setAttribute('src', movieImage)
-  image.setAttribute('alt', `Imagem do filme ${movieTitle}`)
+  image.setAttribute('alt', `Image of the film ${movieTitle}`)
   image.setAttribute('loading', 'lazy')
 
   divImageMovie.appendChild(image)
@@ -119,7 +119,7 @@ async function getMovieData(movieId) {
       let findData = await findResponse.json();
 
       if (findData.movie_results.length === 0) {
-        throw new Error(`Filme com ID IMDb ${imdbId} não encontrado.`);
+        throw new Error(`Film with IMDb ID ${imdbId} not found.`);
       }
       const tmdbId = findData.movie_results[0].id;
 
@@ -129,7 +129,7 @@ async function getMovieData(movieId) {
 
      
       if (!data.backdrop_path) {
-        throw new Error(`Filme "${data.title}" não possui imagem de fundo e não será adicionado.`);
+        throw new Error(`Film "${data.title}" does not have a backdrop image and will not be added.`);
       }
 
     
@@ -156,7 +156,7 @@ async function getMovieData(movieId) {
     
       return movieData
     } catch(error) {
-      console.log('mensagem de erro:', error.message)
+      console.error('Error fetching movie data:', error.message)
     }
   }
 

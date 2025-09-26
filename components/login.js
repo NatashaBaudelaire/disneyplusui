@@ -127,7 +127,7 @@ const CTALogoTwo = styled.img`
 
 export default Login;
 
-loginScreen.classList.remove('fade-in'); // se houver
+loginScreen.classList.remove('fade-in');
 loginScreen.classList.add('fade-out');
 
 setTimeout(() => {

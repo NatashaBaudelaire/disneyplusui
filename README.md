@@ -6,7 +6,7 @@
 
 ## Objective
 
-The main goal of this project was to recreate the Disney+ interface using modern web technologies, applying **HTML5, CSS3 and JavaScript (ES6+)**. The content is dynamically generated through The Movie Database **(TMDB)** API, which provides detailed movie information such as title, synopsis, cover image, background image, and rating, complemented by images enhanced in Photoshop for improved visual quality.
+The main goal of this project was to recreate the Disney+ interface using modern web technologies, applying **HTML5, CSS3 and JavaScript (ES6+)**. The content is dynamically generated through The Movie Database **(TMDB)** API, which provides detailed film information such as title, synopsis, cover image, background image, and rating, complemented by images enhanced in Photoshop for improved visual quality.
 
 ***
 
@@ -23,7 +23,7 @@ The main goal of this project was to recreate the Disney+ interface using modern
 
 ## Project Overview
 
-Disney Plus UI is a professional project that replicates the Disney+ using semantic HTML, advanced CSS with global variables and responsive design, JavaScript for dynamic integration with the TMDB API, and images professionally processed in Photoshop at 4K quality.
+Disney Plus UI is a professional project that replicates the Disney+ interface using semantic HTML, advanced CSS with global variables and responsive design, JavaScript for dynamic integration with the TMDB API, and images professionally processed in Photoshop at 4K quality.
 
 ***
 
@@ -32,31 +32,30 @@ Disney Plus UI is a professional project that replicates the Disney+ using seman
 - **HTML5**  
 - **CSS3**  
 - **JavaScript (ES6+)**  
-- **TMDB API (The Movie Database)**  
-- **Firebase**  
+- **TMDB API (The Movie Database)**
 - **Photoshop**
 
 ***
 
 ## Key Features
 
-- Dynamic creation of cards displaying title, description, cover images, background images, and movie ratings  
-- Interactive, responsive, and easy-to-navigate menu  
-- Visual highlight for the selected active movie  
-- Event handling for dynamic addition and manipulation of movies within the interface  
-- Image loading optimisation to ensure high performance  
-- Custom favicon for brand recognition  
-- Custom-designed scroll for improved user experience in the menu  
-- Smooth fade-in and fade-out transitions on login, password, and password recovery screens for a fluid and professional navigation experience  
+- Dynamic creation of cards displaying title, description, cover images, background images, and film ratings
+- Interactive, responsive, and easy-to-navigate menu
+- Visual highlight for the selected active film
+- Event handling for dynamic addition and manipulation of films within the interface
+- Image loading optimisation to ensure high performance
+- Custom favicon for brand recognition
+- Custom-designed scroll for improved user experience in the menu
+- Smooth fade-in and fade-out transitions on login, password, and password recovery screens for a fluid and professional navigation experience 
 
 ***
 
 ## Improvements to Implement
 
-- Enable saving movies in localStorage to preserve application state across sessions  
-- Configure the "Watch Now" button to dynamically open movie trailers  
-- Develop search functionality and dynamic movie addition within the interface  
-- Ensure consistent and optimised use of 4K resolution images across all visual elements  
+- Enable saving films in localStorage to preserve application state across sessions
+- Configure the "Watch Now" button to dynamically open film trailers
+- Develop search functionality and dynamic film addition within the interface
+- Ensure consistent and optimised use of 4K resolution images across all visual elements
 
 ***
 
@@ -75,18 +74,17 @@ git clone https://github.com/NatashaBaudelaire/disneyplusui.git
 
 ## Key Concepts Applied
 
-- Semantic HTML5 structure  
-- API consumption using fetch()  
-- Dynamic DOM creation with createElement()  
-- Use of global CSS variables defined in :root  
-- Interactive menus with active item highlighting  
-- Image loading optimisation  
-- Custom favicon integration  
-- Favourite movies marking functionality  
-- Responsive design using media queries  
-- Smooth fade-in and fade-out transitions  
-- Basic login/logout system  
-
+- Semantic HTML5 structure
+- API consumption using fetch()
+- Dynamic DOM creation with createElement()
+- Use of global CSS variables defined in :root
+- Interactive menus with active item highlighting
+- Image loading optimisation
+- Custom favicon integration
+- Favourite films marking functionality
+- Responsive design using media queries
+- Smooth fade-in and fade-out transitions
+- Basic login/logout system
 ***
 
 ## Contact
