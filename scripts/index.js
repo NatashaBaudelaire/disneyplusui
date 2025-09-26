@@ -2,7 +2,7 @@ const API_KEY = '03c4e3dc470296959d6bf68804146538'
 const API_LANGUAGE = 'EN-GB'
 const BASE_URL_IMAGE = {
   original: 'https://image.tmdb.org/t/p/original',
-  small: 'https://image.tmdb.org/t/p/w500'
+  small: 'https://image.tmdb.org/t/p/w1280'
 }
 
 const movies = []
@@ -10,7 +10,11 @@ let movieActive = ''
 const moviesElement = document.getElementById('movies')
 
 function getUrlMovie(movieId) {
-  return `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=${API_LANGUAGE}`
+  return `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=${API_LANGUAGE}&append_to_response=videos`
+}
+
+function getUrlMovieByImdbId(imdbId) {
+  return `https://api.themoviedb.org/3/find/${imdbId}?api_key=${API_KEY}&external_source=imdb_id`
 }
 
 function changeButtonMenu() {
@@ -28,6 +32,10 @@ function setMainMovie(movie) {
   const description = document.querySelector('.feature__movie p')
   const info = document.querySelector('.feature__movie span')
   const rating = document.querySelector('.rating strong')
+  const watchNowBtn = document.getElementById('watchNowBtn');
+
+  
+  watchNowBtn.setAttribute('data-trailer-key', movie.trailer_key);
 
   title.innerHTML = movie.title
   description.innerHTML = movie.overview
@@ -101,15 +109,38 @@ function addMovieInList(movie) {
 }
 
 async function getMovieData(movieId) {
-  const isMovieInList = movies.findIndex(movie => movie.id === movieId)
+  const imdbId = movieId; // Renomeando para clareza
+  const isMovieInList = movies.findIndex(movie => movie.id === imdbId)
 
   if(isMovieInList === -1) {
     try {
-      let data = await fetch(getUrlMovie(movieId))
-      data = await data.json()
     
+      let findResponse = await fetch(getUrlMovieByImdbId(imdbId));
+      let findData = await findResponse.json();
+
+      if (findData.movie_results.length === 0) {
+        throw new Error(`Filme com ID IMDb ${imdbId} não encontrado.`);
+      }
+      const tmdbId = findData.movie_results[0].id;
+
+     
+      let data = await fetch(getUrlMovie(tmdbId));
+      data = await data.json();
+
+     
+      if (!data.backdrop_path) {
+        throw new Error(`Filme "${data.title}" não possui imagem de fundo e não será adicionado.`);
+      }
+
+    
+      const videos = data.videos.results;
+      const trailer = videos.find(v => v.type === 'Trailer' && v.site === 'YouTube') || 
+                      videos.find(v => v.type === 'Teaser' && v.site === 'YouTube') || 
+                      videos.find(v => v.site === 'YouTube');
+
+
       const movieData = {
-        id: movieId,
+        id: imdbId,
         title: data.title,
         overview: data.overview,
         vote_average: data.vote_average,
@@ -119,7 +150,8 @@ async function getMovieData(movieId) {
           original: BASE_URL_IMAGE.original.concat(data.backdrop_path),
           small: BASE_URL_IMAGE.small.concat(data.backdrop_path),
         }
-      }
+      };
+      movieData.trailer_key = trailer ? trailer.key : ''; // Guarda a chave do trailer
       movies.push(movieData)
     
       return movieData
@@ -132,19 +164,28 @@ async function getMovieData(movieId) {
 }
 
 function loadMovies() {
-  const LIST_MOVIES = ['tt12801262', 'tt4823776', 'tt0800369', 'tt3896198', 'tt1211837', 'tt1825683']
-  
+
+  const LIST_MOVIES = [
+    'tt22022452',
+    'tt4154796',
+    'tt0110357',
+    'tt2948372',
+    'tt3521164',
+    'tt1825683'
+  ];
   LIST_MOVIES.map(async (movie, index) => {
     const movieData = await getMovieData(movie)
-
-    addMovieInList(movieData)
-
-    if(index === 0) {
-      setMainMovie(movieData)
-      movieActive = movieData.id
-
-      const movieActiveNew = document.getElementById(movieActive)
-      movieActiveNew.classList.add('active-movie')
+    
+    if (movieData) {
+      addMovieInList(movieData)
+  
+      if(index === 0) {
+        setMainMovie(movieData)
+        movieActive = movieData.id
+  
+        const movieActiveNew = document.getElementById(movieActive)
+        movieActiveNew.classList.add('active-movie')
+      }
     }
   })
 }
