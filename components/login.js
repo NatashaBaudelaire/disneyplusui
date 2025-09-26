@@ -132,7 +132,7 @@ loginScreen.classList.add('fade-out');
 
 setTimeout(() => {
   loginScreen.style.display = 'none';
-  // mostra o app
+
 }, 1000);
 
 app.classList.remove('fade-in');
@@ -140,5 +140,5 @@ app.classList.add('fade-out');
 
 setTimeout(() => {
   app.style.display = 'none';
-  // mostra loginScreen
+
 }, 1000);

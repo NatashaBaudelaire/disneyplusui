@@ -2,6 +2,8 @@
   Disney Plus UI
 </h1>
 
+![Image](https://github.com/user-attachments/assets/57348170-ef39-4c05-829d-876d757e81bd)
+
 ## Objective
 
 The main goal of this project was to recreate the Disney+ interface using modern web technologies, applying **HTML5, CSS3 and JavaScript (ES6+)**. The content is dynamically generated through The Movie Database **(TMDB)** API, which provides detailed movie information such as title, synopsis, cover image, background image, and rating, complemented by images enhanced in Photoshop for improved visual quality.

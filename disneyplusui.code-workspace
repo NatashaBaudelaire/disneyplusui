@@ -5,6 +5,8 @@
 		}
 	],
 	"settings": {
-		"liveServer.settings.multiRootWorkspaceName": "disneyplusui"
+		"liveServer.settings.multiRootWorkspaceName": "disneyplusui",
+		"CodeGPT.apiKey": "Gemini CLI",
+		"diffEditor.codeLens": true
 	}
 }

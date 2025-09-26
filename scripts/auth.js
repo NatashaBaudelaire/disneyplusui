@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // DOM Elements
+
   const authBtn = document.getElementById('authBtn');
   const firstNameInput = document.getElementById('firstNameInput');
   const lastNameInput = document.getElementById('lastNameInput');
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return /\S+@\S+\.\S+/.test(email);
   }
 
-  // Toggle password visibility
+
   function setupPasswordToggle(input, button) {
     button.addEventListener('click', () => {
       const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
@@ -33,13 +33,13 @@ document.addEventListener('DOMContentLoaded', () => {
   setupPasswordToggle(passwordInput, togglePassword);
   setupPasswordToggle(confirmPasswordInput, toggleConfirmPassword);
 
-  // Simulated user database
+ 
   let registeredUsers = [
     { firstName: 'Test', lastName: 'User', email: 'user@example.com', password: 'password123' },
     { email: 'test@disney.com', password: 'disneyplus' },
   ];
 
-  // Login validation
+
   function handleLogin() {
     const email = emailInput.value.trim();
     const password = passwordInput.value.trim();
@@ -62,23 +62,23 @@ document.addEventListener('DOMContentLoaded', () => {
       loginError.textContent = 'This email is not registered. Please sign up.';
       loginError.style.display = 'block';
     } else if (user.password === password) {
-      // Successful login
+
       loginScreen.classList.add('fade-out');
       setTimeout(() => {
         loginScreen.style.display = 'none';
         app.style.display = 'block';
-        // Force reflow to ensure transition is applied
+
         void app.offsetWidth;
         app.classList.add('fade-in');
       }, 1000);
     } else {
-      // Incorrect password
+
       loginError.textContent = 'Incorrect password. Please try again.';
       loginError.style.display = 'block';
     }
   }
 
-  // Sign-up validation
+
   function handleSignUp() {
     const firstName = firstNameInput.value.trim();
     const lastName = lastNameInput.value.trim();
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
       registeredUsers.push({ firstName, lastName, email, password });
       console.log('Updated user database:', registeredUsers);
       alert('Account created successfully! You can now sign in.');
-      toggleFormMode(true); // Switch back to login mode
+      toggleFormMode(true);
       emailInput.value = email;
       passwordInput.value = '';
       return;
@@ -104,12 +104,12 @@ document.addEventListener('DOMContentLoaded', () => {
     loginError.style.display = 'block';
   }
 
-  // Main authentication button handler
+
   authBtn.addEventListener('click', () => {
     isLoginMode ? handleLogin() : handleSignUp();
   });
 
-  // "Forgot password" link
+
   forgotPasswordLink.addEventListener('click', (e) => {
     e.preventDefault();
     alert('To recover your password, please check your email provider, such as Gmail, Outlook, or Yahoo.');
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   toggleFormLink.addEventListener('click', handleToggleLinkClick);
 
-  // Logout with confirmation
+
   logoutBtn.addEventListener('click', () => {
     if (confirm('Are you sure you want to sign out?')) {
       app.classList.remove('fade-in');
@@ -160,7 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Header scroll effect
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
       mainHeader.classList.add('scrolled');

@@ -86,7 +86,7 @@
         margin-bottom: 20px;
       }
 
-      /* Hide sign-up fields by default */
+
       .signup-field {
         display: none;
       }
@@ -253,22 +253,31 @@
         transition: background-color 0.3s ease, transform 0.1s ease, background 0.3s ease;
         user-select: none;
       }
+.navigation {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100vh;
+  padding: 24px; 
+  background-color: #0c0e1a;
+  border-left: 1px solid #1e213a;
+  z-index: 1000;
+  color: #fff;
+  overflow-y: auto;    /* rolagem vertical se necessário */
+  transform: translateX(100%); /* escondido à direita */
+  visibility: hidden;
+  transition: transform 0.5s ease-in-out, visibility 0.5s;
+}
 
-      /* Sidebar Navigation Styles */
-      .navigation {
-        position: fixed;
-        top: 0;
-        right: 0;
-        height: 100vh;
-        width: 600px;
-        background-color: #0c0e1a;
-        border-left: 1px solid #1e213a;
-        padding: 24px;
-        transform: translateX(100%);
-        visibility: hidden;
-        transition: transform 0.5s ease-in-out;
-        z-index: 1000;
-        color: #fff;
+.navigation.active {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+      .navigation.active {
+        transform: translateX(0);
+        visibility: visible;
       }
 
       .navigation.active {
@@ -282,11 +291,11 @@
         margin-bottom: 24px;
       }
 
-      /* This was missing from the global.css, so I'm adding it here */
+
       .movie {
-        min-width: 200px; /* Defines a minimum width for the movie card */
-        width: 200px;     /* Defines a fixed width */
-        height: 112px;    /* Maintains a 16:9 aspect ratio (200 / 1.77) */
+        min-width: 200px;
+        width: 200px;     
+        height: 112px;
         position: relative;
         overflow: hidden;
         border-radius: 4px;
@@ -296,7 +305,7 @@
         transform: scale(1.05);
       }
 
-      /* Category Styles */
+
       .category-section {
         padding: 20px 40px;
       }
@@ -339,14 +348,14 @@
 
       .sidebar-movies-list {
         display: flex;
-        overflow-x: hidden; /* Hide scrollbar, will be controlled by buttons */
+        overflow-x: hidden;
         scroll-behavior: smooth;
         gap: 16px;
-        padding: 0 4px; /* Small padding to not cut off box-shadow on hover */
+        padding: 0 4px;
       }
 
       .sidebar-carousel .movie {
-        flex-shrink: 0; /* Prevent items from shrinking */
+        flex-shrink: 0;
       }
 
       .carousel-arrow {
@@ -375,7 +384,7 @@
       .arrow-left { left: -20px; }
       .arrow-right { right: -20px; }
 
-      /* New Brand Blocks Styles */
+
       .brands {
         padding: 30px 40px;
         display: grid;
@@ -422,10 +431,9 @@
         opacity: 1;
       }
 
-      /* Adjust main content layout */
+
       main { padding-top: 0; }
 
-      /* New Header Styles */
       .main-header {
         position: fixed;
         top: 0;
@@ -504,9 +512,9 @@
         opacity: 1 !important;
       }
 
-      /* Adjust main content to be below header */
+
       .app__image {
-        padding-top: 70px;
+        padding-top: 0%;
       }
 
     </style>
@@ -581,12 +589,12 @@
         </div>
 
         <nav class="navigation">
-          <h2>My Movies</h2>
+          <h2>Movie Lists</h2>
 
           <form class="form" id="add__movie">
             <input type="text" placeholder="Add your movie" name="movie" />
 
-            <button type="submit" aria-label="Adicionar filme">+</button>
+            <button type="submit" aria-label="Add your movie">+</button>
           </form>
 
           <ul id="movies"></ul>
@@ -634,27 +642,27 @@
         return /\S+@\S+\.\S+/.test(email);
       }
 
-      // Toggle password visibility
+
       togglePassword.addEventListener('click', () => {
         const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
         passwordInput.setAttribute('type', type);
         togglePassword.textContent = type === 'password' ? 'Show' : 'Hide';
       });
 
-      // Toggle confirm password visibility
+
       toggleConfirmPassword.addEventListener('click', () => {
         const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
         confirmPasswordInput.setAttribute('type', type);
         toggleConfirmPassword.textContent = type === 'password' ? 'Show' : 'Hide';
       });
 
-      // Simulated user database
+
       let registeredUsers = [
         { firstName: 'Test', lastName: 'User', email: 'user@example.com', password: 'password123' },
         { email: 'test@disney.com', password: 'disneyplus' },
       ];
 
-      // Login validation
+
       function handleLogin() {
         const email = emailInput.value.trim();
         const password = passwordInput.value.trim();
@@ -677,7 +685,7 @@
           loginError.textContent = 'This email is not registered. Please sign up.';
           loginError.style.display = 'block';
         } else {
-          // Validate email and password
+
           if (user.password === password) {
             // Successful login
             loginScreen.classList.remove('fade-in');
@@ -692,14 +700,14 @@
               app.classList.add('fade-in');
             }, 1000);
           } else {
-            // Incorrect password
+
             loginError.textContent = 'Incorrect password. Please try again.';
             loginError.style.display = 'block';
           }
         }
       }
 
-      // Sign-up validation
+
       function handleSignUp() {
         const firstName = firstNameInput.value.trim();
         const lastName = lastNameInput.value.trim();
@@ -707,7 +715,7 @@
         const password = passwordInput.value.trim();
         const confirmPassword = confirmPasswordInput.value.trim();
 
-        // Client-side validation
+
         if (!firstName) {
           loginError.textContent = 'Please enter your first name.';
         } else if (!lastName) {
@@ -721,23 +729,23 @@
         } else if (registeredUsers.some(u => u.email === email)) {
           loginError.textContent = 'An account with this email already exists.';
         } else {
-          // Integration with simulated backend
+
           registeredUsers.push({ firstName, lastName, email, password });
           console.log('Updated user database:', registeredUsers);
 
-          // Display success message and switch to login
+
           alert('Account created successfully! You can now sign in.');
-          toggleFormMode(); // Switch back to login mode
+          toggleFormMode();
           loginError.style.display = 'none';
-          emailInput.value = email; // Pre-fill email for convenience
+          emailInput.value = email;
           passwordInput.value = '';
-          return; // Exit to prevent showing an error
+          return;
         }
 
         loginError.style.display = 'block';
       }
 
-      // Main authentication button handler
+
       authBtn.addEventListener('click', () => {
         if (isLoginMode) {
           handleLogin();
@@ -746,13 +754,13 @@
         }
       });
 
-      // "Forgot password" link
+
       forgotPasswordLink.addEventListener('click', (e) => {
         e.preventDefault();
         alert('To recover your password, please access your email provider:\n\n- Gmail\n- Outlook/Hotmail\n- Yahoo\n- Others');
       });
 
-      // Function to toggle between Login and Sign-up modes
+
       function toggleFormMode() {
         isLoginMode = !isLoginMode;
         const signupFields = document.querySelectorAll('.signup-field');
@@ -767,7 +775,7 @@
           field.style.display = isLoginMode ? 'none' : 'block';
         });
 
-        // Re-attach listener to the new link
+
         document.getElementById('toggleFormLink').addEventListener('click', (e) => {
           e.preventDefault();
           passwordInput.setAttribute('type', 'password');
@@ -775,7 +783,7 @@
           toggleFormMode();
         });
 
-        // Clear form and errors
+
         loginError.style.display = 'none';
         document.getElementById('authForm').reset();
       }
@@ -787,7 +795,7 @@
         toggleFormMode();
       });
 
-      // Logout with confirmation
+
       logoutBtn.addEventListener('click', () => {
         if (confirm('Are you sure you want to sign out?')) {
           app.classList.remove('fade-in');
@@ -801,7 +809,7 @@
             void loginScreen.offsetWidth;
             loginScreen.classList.add('fade-in');
 
-            // Clear form fields
+
             emailInput.value = '';
             passwordInput.value = '';
             firstNameInput.value = '';
