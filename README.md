@@ -1,8 +1,8 @@
-<h1 align="left">
+<h1 align="center">
   Disney Plus UI
 </h1>
 
-![Image](https://github.com/user-attachments/assets/57348170-ef39-4c05-829d-876d757e81bd)
+![Image](HOME.gif)
 
 ## Objective
 
