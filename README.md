@@ -6,7 +6,7 @@
 
 ## Objective
 
-The main goal of this project was to recreate the Disney+ interface using modern web technologies, applying **HTML5, CSS3 and JavaScript (ES6+)**. The content is dynamically generated through The Movie Database **(TMDB)** API, which provides detailed film information such as title, synopsis, cover image, background image, and rating, complemented by images enhanced in Photoshop for improved visual quality.
+The main goal of this project was to recreate the Disney+ interface using modern web technologies, applying HTML5, CSS3 and JavaScript (ES6+). The content is dynamically generated through The Movie Database (TMDB) API, which provides detailed film information such as title, synopsis, cover image, background image, and rating, complemented by images enhanced in Photoshop for improved visual quality.
 
 ***
 
